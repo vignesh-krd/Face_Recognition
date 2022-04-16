@@ -5,6 +5,7 @@ import face_recognition
 
 faceNames = []
 images = []
+encodeListKnown = []
 
 
 class Live_Face_Recogniser:
@@ -17,11 +18,14 @@ class Live_Face_Recogniser:
             myList = os.listdir(path)
             print("My List", myList)
 
-            for cl in myList:
-                curImg = cv2.imread(f'{path}/{cl}')
+            for name in myList:
+                curImg = cv2.imread(f'{path}/{name}')
                 images.append(curImg)
-                faceNames.append(os.path.splitext(cl)[0])
+                faceNames.append(os.path.splitext(name)[0])
             print("Face Names: ", faceNames)
+            encodeListKnown.append(Live_Face_Recogniser.findEncodings(images))
+            print("Called Face Encodings")
+            # print("Encode list known:", encodeListKnown[0])
 
     def findEncodings(images):
         encodelist = []
@@ -41,11 +45,6 @@ class Live_Face_Recogniser:
 # cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 240)
 
     def compare_faces(self, img):
-        encodeListKnown = []
-        if not encodeListKnown:
-            encodeListKnown = Live_Face_Recogniser.findEncodings(images)
-            print("Called Face Encodings")
-
         imgSmall = cv2.resize(img, (0, 0), None, 0.25, 0.25)
         imgSmall = cv2.cvtColor(imgSmall, cv2.COLOR_BGR2RGB)
 
@@ -56,9 +55,9 @@ class Live_Face_Recogniser:
 
         for encodeFace, faceLoc in zip(encodeCurFrame, faceCurFrame):
             matches = face_recognition.compare_faces(
-                encodeListKnown, encodeFace)
+                encodeListKnown[0], encodeFace)
             faceDis = face_recognition.face_distance(
-                encodeListKnown, encodeFace)
+                encodeListKnown[0], encodeFace)
             # print("Face Distance: ", faceDis)
             matchIndex = 0
             # print("Match Faces", matches)
@@ -69,10 +68,11 @@ class Live_Face_Recogniser:
                     print(name)
                     y1, x2, y2, x1 = faceLoc
                     y1, x2, y2, x1 = y1 * 4, x2 * 4, y2 * 4, x1 * 4
-                    cv2.rectangle(img, (x1, y1), (x2, y2), (255, 0, 255), 2)
+                    img = cv2.rectangle(
+                        img, (x1, y1), (x2, y2), (255, 0, 255), 2)
                     # cv2.rectangle(img, (x1, y1 - 35), (x2, y2), (255, 0, 255), cv2.FILLED)
-                    cv2.putText(img, name, (x1 + 6, y2 - 6,),
-                                cv2.FONT_HERSHEY_PLAIN, 1, (255, 255, 255), 1)
+                    img = cv2.putText(img, name, (x1 + 6, y2 - 6,),
+                                      cv2.FONT_HERSHEY_PLAIN, 1, (255, 255, 255), 1)
                     print("Rectangle Drawn on the face")
             except Exception as e:
                 print(e)
