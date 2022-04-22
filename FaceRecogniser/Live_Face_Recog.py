@@ -2,6 +2,7 @@ import cv2
 import os
 import numpy as np
 import face_recognition
+from tkinter import filedialog
 
 faceNames = []
 images = []
@@ -13,19 +14,33 @@ class Live_Face_Recogniser:
         if not faceNames:
             # For Input Faces
             # path = '..\Images'
-            path = os.path.abspath('Images')
-            print("Absolute Path", path)
-            myList = os.listdir(path)
-            print("My List", myList)
+            # path = os.path.abspath('Images')
+            if False:
+                path = filedialog.askdirectory()
+                print("Absolute Path", path)
+                myList = os.listdir(path)
+                print("My List", myList)
 
-            for name in myList:
-                curImg = cv2.imread(f'{path}/{name}')
-                images.append(curImg)
-                faceNames.append(os.path.splitext(name)[0])
-            print("Face Names: ", faceNames)
-            encodeListKnown.append(Live_Face_Recogniser.findEncodings(images))
-            print("Called Face Encodings")
-            # print("Encode list known:", encodeListKnown[0])
+                for name in myList:
+                    curImg = cv2.imread(f'{path}/{name}')
+                    images.append(curImg)
+                    faceNames.append(os.path.splitext(name)[0])
+                print("Face Names: ", faceNames)
+                encodeListKnown.append(
+                    Live_Face_Recogniser.findEncodings(images))
+                print("Called Face Encodings")
+                # print("Encode list known:", encodeListKnown[0])
+            else:
+                path = filedialog.askopenfilename()
+                print("Absolute Path:", path)
+                img = cv2.imread(path)
+                images.append(img)
+                file_name = path.split('/')[-1]
+                faceNames.append(file_name.split('.')[0])
+                print("Face Names: ", faceNames)
+                encodeListKnown.append(
+                    Live_Face_Recogniser.findEncodings(images))
+                print("Called Face Encodings")
 
     def findEncodings(images):
         encodelist = []

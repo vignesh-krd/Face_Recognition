@@ -5,9 +5,11 @@ from django.http import StreamingHttpResponse
 import cv2
 import threading
 from FaceRecogniser.Live_Face_Recog import Live_Face_Recogniser
-
+from tkinter import filedialog
 
 # Create your views here.
+
+
 def home(request):
     return render(request, "home.html")
 
