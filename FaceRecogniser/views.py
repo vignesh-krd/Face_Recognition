@@ -1,4 +1,3 @@
-from ast import While
 from django import views
 from django.shortcuts import render
 from django.http import StreamingHttpResponse
@@ -10,8 +9,36 @@ from tkinter import filedialog
 # Create your views here.
 
 
-def home(request):
-    return render(request, "home.html")
+def index(request):
+    return render(request, "index.html")
+
+
+def about(request):
+    return render(request, "about.html")
+
+
+def live_recognition(request):
+    return render(request, "Live_Recognition.html")
+
+
+def single_face(request):
+    return render(request, "SingleFace.html")
+
+
+def multi_face(request):
+    return render(request, "MultiFace.html")
+
+
+def pre_recorded(request):
+    return render(request, "Pre_Recorded.html")
+
+
+def single_file(request):
+    return render(request, "Singlefile.html")
+
+
+def multi_file(request):
+    return render(request, "Multifile.html")
 
 
 def facecam_feed(request):

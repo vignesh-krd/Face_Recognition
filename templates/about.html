@@ -1,0 +1,163 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>About - Face_Recogniton</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'images/favicon.png' %}" rel="icon">
+  <link href="{% static 'images/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Kelly - v4.7.0
+  * Template URL: https://bootstrapmade.com/kelly-free-bootstrap-cv-resume-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+
+      <h1 class="logo me-auto me-lg-0"><a href="index">Face Recogniton</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a href="index">Home</a></li>
+          <li><a class="active" href="about">About</a></li>
+          <!-- <li><a class="active" href="Live_Recognition.html">Live Recognition</a></li> -->
+          <li class="dropdown"><a href="live_recognition"><span>Live Recognition</span><i
+                class="bi bi-chevron-right"></i></a>
+            <ul>
+              <li><a href="single_face">Single Face </a></li>
+              <li><a href="multi_face">Multi Face </a></li>
+
+            </ul>
+          </li>
+
+          <li class="dropdown"><a href="pre_recorded"><span>Pre Recorded</span><i class="bi bi-chevron-right"></i></a>
+            <ul>
+              <li><a href="single_file">Single File </a></li>
+              <li><a href="multi_file">Multi Files </a></li>
+
+            </ul>
+          </li>
+
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+      <!-- <div class="header-social-links">
+        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
+      </div> -->
+
+    </div>
+
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>About</h2>
+          <p>Face recognition is the process of taking a face in an image and actually identifying who the face belongs
+            to. Face recognition is thus a form of person identification.</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-4">
+            <img src="{% static 'images/about.jpg' %}" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-8 pt-4 pt-lg-0 content">
+            <h3>Tools Used</h3>
+            <p class="fst-italic">
+              To build the Face Recogniton project the Software we have used are
+            </p>
+            <div class="row">
+              <div class="col-lg-6">
+                <ul>
+                  <li><i class="bi bi-rounded-right"></i> <strong>Front End UI:</strong> HTML, CSS & JAVASCRIPT</li>
+                  <li><i class="bi bi-rounded-right"></i> <strong>Back End:</strong> PYTHON</li>
+                  <li><i class="bi bi-rounded-right"></i> <strong>Web framework:</strong> DJANGO</li>
+                  <li><i class="bi bi-rounded-right"></i> <strong>Module:</strong>OpenCV </li>
+                </ul>
+              </div>
+              <!-- <div class="col-lg-6">
+                <ul>
+                  <li><i class="bi bi-rounded-right"></i> <strong>Age:</strong> 30</li>
+                  <li><i class="bi bi-rounded-right"></i> <strong>Degree:</strong> Master</li>
+                  <li><i class="bi bi-rounded-right"></i> <strong>PhEmailone:</strong> email@example.com</li>
+                  <li><i class="bi bi-rounded-right"></i> <strong>Freelance:</strong> Available</li>
+                </ul>
+              </div> -->
+            </div>
+            <p>
+              Face recognition technology is making the world safer, smarter, and more convenient—and as the need for
+              advanced security grows, the potential uses for facial recognition continue to expand.The main objective
+              of the Face Recognition project is to recognize the faces of some known faces
+              which is already inputted to the system, while the person entering into the live camera frame it will
+              recognize that person face and check with all the faces which we already inputted , If the matches found
+              then
+              it will mark their face with name. We can also provide the prerecorded video and input images, if the
+              person
+              face matches in that video it will give their name with the timestamp
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+    <div id="preloader"></div>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="{% static 'vendor/purecounter/purecounter.js' %}"></script>
+    <script src="{% static 'vendor/aos/aos.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
+    <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'vendor/waypoints/noframework.waypoints.js' %}"></script>
+    <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
+
+    <!-- Template Main JS File -->
+    <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>
