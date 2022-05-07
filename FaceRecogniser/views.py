@@ -1,3 +1,4 @@
+from importlib.resources import path
 from django import views
 from django.shortcuts import render
 from django.http import StreamingHttpResponse
@@ -7,6 +8,11 @@ from FaceRecogniser.Live_Face_Recog import Live_Face_Recogniser
 from tkinter import filedialog
 
 # Create your views here.
+is_single = True
+
+
+def home(request):
+    return render(request, "home.html")
 
 
 def index(request):
@@ -22,11 +28,15 @@ def live_recognition(request):
 
 
 def single_face(request):
-    return render(request, "SingleFace.html")
+    global is_single
+    is_single = True
+    return render(request, "SingleFace.html", {'path': False})
 
 
 def multi_face(request):
-    return render(request, "MultiFace.html")
+    global is_single
+    is_single = False
+    return render(request, "MultiFace.html", {'path': False})
 
 
 def pre_recorded(request):
@@ -34,10 +44,14 @@ def pre_recorded(request):
 
 
 def single_file(request):
+    global is_single
+    is_single = True
     return render(request, "Singlefile.html")
 
 
 def multi_file(request):
+    global is_single
+    is_single = False
     return render(request, "Multifile.html")
 
 
@@ -46,6 +60,7 @@ def facecam_feed(request):
     response = StreamingHttpResponse(
         gen(Cam), content_type="multipart/x-mixed-replace; boundary=frame")
     return response
+
 # to capture video class
 
 
@@ -59,11 +74,14 @@ class VideoCamera(object):
         self.video.release()
 
     def get_frame(self):
-        image = self.frame
-        lfr_object = Live_Face_Recogniser()
-        image = lfr_object.compare_faces(image)
-        _, jpeg = cv2.imencode(".jpg", image)
-        return jpeg.tobytes()
+        while True:
+            image = self.frame
+            lfr_object = Live_Face_Recogniser(is_single)
+            image = lfr_object.compare_faces(image)
+            _, jpeg = cv2.imencode(".jpg", image)
+            if cv2.waitKey(2) & 0xFF == ord('q'):
+                break
+            return jpeg.tobytes()
 
     def update(self):
         while True:

@@ -11,7 +11,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{% static 'images/favicon.png' %}" rel="icon">
+  <link href="{% static 'images/favicon.jpeg' %}" rel="icon">
   <link href="{% static 'images/apple-touch-icon.png' %}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -52,7 +52,7 @@
         <ul>
           <li><a href="index">Home</a></li>
           <li><a href="about">About</a></li>
-          <li class="dropdown"><a href="live_recognition"><span>Live_Recognition</span><i
+          <li class="dropdown"><a href="live_recognition"><span>Live Recognition</span><i
                 class="bi bi-chevron-right"></i></a>
             <ul>
               <li><a href="single_face">Single Face </a></li>
@@ -66,7 +66,6 @@
             <ul>
               <li><a href="single_file">Single File </a></li>
               <li><a href="multi_file">Multi Files </a></li>
-
             </ul>
           </li>
         </ul>
@@ -85,8 +84,15 @@
 
         <div class="section-title">
           <h2>Single Face recognition</h2>
-
         </div>
+        {% if not path %}
+        <button><a href="{% url 'open_file' %}">Open File</button>
+        {% endif %}
+        {% if path %}
+        <div style="justify-content: center; display: flex; margin-top: 30px;">
+          <img src="{% url 'facecam_feed' %}">
+        </div>
+        {% endif %}
 
   </main><!-- End #main -->
 

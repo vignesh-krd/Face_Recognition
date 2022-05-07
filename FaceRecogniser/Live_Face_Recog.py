@@ -1,5 +1,7 @@
+from importlib.resources import path
 import cv2
 import os
+from django.shortcuts import render
 import numpy as np
 import face_recognition
 from tkinter import filedialog
@@ -8,15 +10,29 @@ faceNames = []
 images = []
 encodeListKnown = []
 
+path = ""
+
 
 class Live_Face_Recogniser:
-    def __init__(self):
+    def __init__(self, is_single):
+        global path
         if not faceNames:
             # For Input Faces
             # path = '..\Images'
             # path = os.path.abspath('Images')
-            if False:
-                path = filedialog.askdirectory()
+            if is_single:
+                # path = filedialog.askopenfilename()
+                print("Absolute Path:", path)
+                img = cv2.imread(path)
+                images.append(img)
+                file_name = path.split('/')[-1]
+                faceNames.append(file_name.split('.')[0])
+                print("Face Names: ", faceNames)
+                encodeListKnown.append(
+                    Live_Face_Recogniser.findEncodings(images))
+                print("Called Face Encodings")
+            else:
+                # path = filedialog.askdirectory()
                 print("Absolute Path", path)
                 myList = os.listdir(path)
                 print("My List", myList)
@@ -30,17 +46,6 @@ class Live_Face_Recogniser:
                     Live_Face_Recogniser.findEncodings(images))
                 print("Called Face Encodings")
                 # print("Encode list known:", encodeListKnown[0])
-            else:
-                path = filedialog.askopenfilename()
-                print("Absolute Path:", path)
-                img = cv2.imread(path)
-                images.append(img)
-                file_name = path.split('/')[-1]
-                faceNames.append(file_name.split('.')[0])
-                print("Face Names: ", faceNames)
-                encodeListKnown.append(
-                    Live_Face_Recogniser.findEncodings(images))
-                print("Called Face Encodings")
 
     def findEncodings(images):
         encodelist = []
@@ -95,3 +100,18 @@ class Live_Face_Recogniser:
         return img
         # cv2.imshow("WebCam", img)
         # cv2.waitKey(1)
+
+
+def open_file(request):
+    global path
+    path = filedialog.askopenfilename()
+    print(path)
+    return render(request, "SingleFace.html", {'path': True})
+
+
+def open_directory(request):
+    global path
+    path = filedialog.askdirectory()
+    print(path)
+    return render(request, "MultiFace.html", {'path': True})
+
