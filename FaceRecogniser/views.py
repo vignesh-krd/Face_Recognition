@@ -1,18 +1,25 @@
+import imp
 from importlib.resources import path
 from django import views
 from django.shortcuts import render
-from django.http import StreamingHttpResponse
+from django.http import HttpResponse, StreamingHttpResponse
 import cv2
 import threading
+from FaceRecogniser import Live_Face_Recog
 from FaceRecogniser.Live_Face_Recog import Live_Face_Recogniser
 from tkinter import filedialog
 
+from FaceRecogniser.Live_Face_Recog import Rec_Face_Recogniser
+
+
 # Create your views here.
 is_single = True
+is_file = False
 
 
 def home(request):
-    return render(request, "home.html")
+    response = "Hiiiiiii"
+    return StreamingHttpResponse(response, content_type="text/plain")
 
 
 def index(request):
@@ -28,14 +35,16 @@ def live_recognition(request):
 
 
 def single_face(request):
-    global is_single
+    global is_single, is_file
     is_single = True
+    is_file = False
     return render(request, "SingleFace.html", {'path': False})
 
 
 def multi_face(request):
-    global is_single
+    global is_single, is_file
     is_single = False
+    is_file = False
     return render(request, "MultiFace.html", {'path': False})
 
 
@@ -44,31 +53,59 @@ def pre_recorded(request):
 
 
 def single_file(request):
-    global is_single
+    global is_single, is_file
     is_single = True
-    return render(request, "Singlefile.html")
+    is_file = True
+    return render(request, "Singlefile.html", {'path': False, 'video_path': False})
 
 
 def multi_file(request):
-    global is_single
+    global is_single, is_file
     is_single = False
-    return render(request, "Multifile.html")
+    is_file = True
+    return render(request, "Multifile.html", {'path': False, 'video_path': False})
 
 
 def facecam_feed(request):
     Cam = VideoCamera()
-    response = StreamingHttpResponse(
-        gen(Cam), content_type="multipart/x-mixed-replace; boundary=frame")
-    return response
+    if not is_file:
+        response = StreamingHttpResponse(
+            gen(Cam), content_type="multipart/x-mixed-replace; boundary=frame")
+        return response
+    return None
+
+
+def rec_feed(request):
+    if is_file:
+        rfr_object = Rec_Face_Recogniser(is_single)
+        face_details_list = rfr_object.compare_faces(
+            Live_Face_Recog.video_path)
+        print(face_details_list)
+        # time_details = ""
+        # for detail in face_details_list:
+        #     time_details += (f"{detail}\n")
+        # print(time_details)
+    if is_single:
+        return render(request, "SingleFile.html", {'path': True, 'video_path': True, 'face_details_list': face_details_list})
+    else:
+        return render(request, "MultiFile.html", {'path': True, 'video_path': True, 'face_details_list': face_details_list})
 
 # to capture video class
 
 
 class VideoCamera(object):
     def __init__(self):
-        self.video = cv2.VideoCapture(0)
-        (self.success, self.frame) = self.video.read()
-        threading.Thread(target=self.update, args=()).start()
+        if is_file:
+            # print("Video Path: ", Live_Face_Recog.video_path)
+            # self.video = cv2.VideoCapture(Live_Face_Recog.video_path)
+            rfr_object = Rec_Face_Recogniser(is_single)
+            face_details_list = rfr_object.compare_faces(
+                Live_Face_Recog.video_path)
+            print(face_details_list)
+        else:
+            self.video = cv2.VideoCapture(0)
+            (self.success, self.frame) = self.video.read()
+            threading.Thread(target=self.update, args=()).start()
 
     def __del__(self):
         self.video.release()

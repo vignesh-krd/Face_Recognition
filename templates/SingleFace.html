@@ -86,13 +86,14 @@
           <h2>Single Face recognition</h2>
         </div>
         {% if not path %}
-        <button><a href="{% url 'open_file' %}">Open File</button>
+        <button><a href="{% url 'live_open_file' %}">Open File</button>
         {% endif %}
         {% if path %}
         <div style="justify-content: center; display: flex; margin-top: 30px;">
           <img src="{% url 'facecam_feed' %}">
         </div>
         {% endif %}
+      </div>
 
   </main><!-- End #main -->
 

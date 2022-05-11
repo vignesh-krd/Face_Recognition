@@ -82,11 +82,22 @@
 
         <section id="services" class="services">
             <div class="container" data-aos="fade-up">
-
                 <div class="section-title">
                     <h2>Single File recognition</h2>
-
                 </div>
+                {% if not path %}
+                <button><a href="{% url 'rec_open_file' %}">Open File</button>
+                {% endif %}
+                {% if not video_path %}
+                <button><a href="{% url 'file_open_video' %}">Open Video</button>
+                {% endif %}
+                {% if path and video_path %}
+                <div style="justify-content: center; display: flex; margin-top: 30px;">
+                    <button><a href="{% url 'rec_feed' %}">Go</a></button>
+                </div>
+                <pre>{{ face_details_list }}</pre>
+                {% endif %}
+            </div>
 
     </main><!-- End #main -->
 
