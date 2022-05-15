@@ -86,14 +86,15 @@
         <div class="section-title">
           <h2>Multi Face Recogniton</h2>
         </div>
-        {% if not path %}
-        <button><a href="{% url 'live_open_directory' %}">Open Folder</button>
-        {% endif %}
-        {% if path %}
         <div style="justify-content: center; display: flex; margin-top: 30px;">
-          <img src="{% url 'facecam_feed' %}">
-        </div>
-        {% endif %}
+          {% if not path %}
+          <button class="btn-open"><a href="{% url 'live_open_directory' %}" class="btn-open-text">Open Folder</button>
+          {% endif %}
+          {% if path %}
+          <div style="justify-content: center; display: flex; margin-top: 30px;">
+            <img src="{% url 'facecam_feed' %}">
+          </div>
+          {% endif %}
 
   </main><!-- End #main -->
 

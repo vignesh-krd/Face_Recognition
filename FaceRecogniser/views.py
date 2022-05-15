@@ -17,9 +17,9 @@ is_single = True
 is_file = False
 
 
-def home(request):
-    response = "Hiiiiiii"
-    return StreamingHttpResponse(response, content_type="text/plain")
+# def home(request):
+#     response = "Hiiiiiii"
+#     return StreamingHttpResponse(response, content_type="text/plain")
 
 
 def index(request):
