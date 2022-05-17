@@ -81,10 +81,6 @@ def rec_feed(request):
         face_details_list = rfr_object.compare_faces(
             Live_Face_Recog.video_path)
         print(face_details_list)
-        # time_details = ""
-        # for detail in face_details_list:
-        #     time_details += (f"{detail}\n")
-        # print(time_details)
     if is_single:
         return render(request, "SingleFile.html", {'path': True, 'video_path': True, 'face_details_list': face_details_list})
     else:

@@ -12,6 +12,7 @@ is_single1 = True
 faceNames = []
 images = []
 encodeListKnown = []
+frame_count = 0
 
 path = ""
 video_path = ""
@@ -70,7 +71,7 @@ class Live_Face_Recogniser:
 # cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 240)
 
     def compare_faces(self, img):
-        imgSmall = cv2.resize(img, (0, 0), None, 0.25, 0.25)
+        imgSmall = cv2.resize(img, (0, 0), None, fx=0.25, fy=0.25)
         imgSmall = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
         # It Returns Top(y1), Right(x2), Bottom(y2), left(x1)
@@ -92,12 +93,10 @@ class Live_Face_Recogniser:
                     name = faceNames[matchIndex].upper()
                     print(name)
                     y1, x2, y2, x1 = faceLoc
-                    y1, x2, y2, x1 = y1 * 4, x2 * 4, y2 * 4, x1 * 4
-                    img = cv2.rectangle(
-                        img, (x1, y1), (x2, y2), (255, 0, 255), 2)
-                    # cv2.rectangle(img, (x1, y1 - 35), (x2, y2), (255, 0, 255), cv2.FILLED)
-                    img = cv2.putText(img, name, (x1 + 6, y2 - 6,),
-                                      cv2.FONT_HERSHEY_PLAIN, 1, (255, 255, 255), 1)
+                    # y1, x2, y2, x1 = y1 * 4, x2 * 4, y2 * 4, x1 * 4
+                    cv2.rectangle(img, (x1, y1), (x2, y2), (172, 189, 46), 2)
+                    cv2.putText(img, name, (x1 + 6, y2 - 6,),
+                                cv2.FONT_HERSHEY_PLAIN, 1, (255, 255, 255), 1)
                     print("Rectangle Drawn on the face")
             except Exception as e:
                 print(e)
@@ -164,7 +163,7 @@ class Rec_Face_Recogniser:
         while True:
             (success, img) = video.read()
             if success:
-                imgSmall = cv2.resize(img, (0, 0), None, 0.25, 0.25)
+                imgSmall = cv2.resize(img, (0, 0), None, fx=0.25, fy=0.25)
                 imgSmall = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
                 # It Returns Top(y1), Right(x2), Bottom(y2), left(x1)
@@ -192,9 +191,9 @@ class Rec_Face_Recogniser:
                             face_details_list.append(time_details)
                             print(time_details)
                             y1, x2, y2, x1 = faceLoc
-                            y1, x2, y2, x1 = y1 * 4, x2 * 4, y2 * 4, x1 * 4
+                            # y1, x2, y2, x1 = y1 * 4, x2 * 4, y2 * 4, x1 * 4
                             img = cv2.rectangle(
-                                img, (x1, y1), (x2, y2), (255, 0, 255), 2)
+                                img, (x1, y1), (x2, y2), (172, 189, 46), 2)
                             # cv2.rectangle(img, (x1, y1 - 35), (x2, y2), (255, 0, 255), cv2.FILLED)
                             img = cv2.putText(img, name, (x1 + 6, y2 - 6,),
                                               cv2.FONT_HERSHEY_PLAIN, 1, (255, 255, 255), 1)

@@ -62,6 +62,19 @@ h6 {
   background: #fff;
 }
 
+.preloader-text-p {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 57.5%;
+  color: #2ebdac;
+  font-weight: bold;
+  font-size: 15px;
+  display: inline-block;
+  text-align: center;
+}
+
 #preloader:before {
   content: "";
   position: fixed;
