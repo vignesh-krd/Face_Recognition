@@ -44,7 +44,7 @@
   <header id="header" class="fixed-top">
     <div class="container-fluid d-flex justify-content-between align-items-center">
 
-      <h1 class="logo me-auto me-lg-0"><a href="index"> Face Recogniton</a></h1>
+      <h1 class="logo me-auto me-lg-0"><a href="index"> Face Recognition</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -96,15 +96,17 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>PreRecorded Face Recogniton</h2>
+          <h2>PreRecorded Face Recognition</h2>
         </div>
         <div class="cardcenter">
           <div class="row">
             <div class="col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
               <div class="icon-box iconbox-blue">
                 <div class="icon">
-                  <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-                  </svg>
+                  <!-- <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                  </svg> -->
+                  <img width="100" height="100" viewBox="0 0 600 600"
+                    src="{% static 'images\Single face recognition.png' %}">
                 </div>
                 <h2><a href="single_file">Single File Input</a></h4>
                   <p>Recognition the face from single file</p>
@@ -115,6 +117,7 @@
                 <div class="icon">
                   <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
                   </svg>
+                  <img width="100" height="100" viewBox="0 0 600 600" src="{% static 'images\MultiFace.png' %}">
                 </div>
                 <h2><a href="multi_file">Multi File Input</a></h4>
                   <p>Recognition the face from multiple Files</p>

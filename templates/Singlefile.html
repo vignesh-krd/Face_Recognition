@@ -44,7 +44,7 @@
     <header id="header" class="fixed-top">
         <div class="container-fluid d-flex justify-content-between align-items-center">
 
-            <h1 class="logo me-auto me-lg-0"><a href="index">Face Recogniton</a></h1>
+            <h1 class="logo me-auto me-lg-0"><a href="index">Face Recognition</a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -87,15 +87,25 @@
                 </div>
                 <div style="justify-content: center; display: flex; margin-top: 30px;">
                     {% if not path %}
-                    <button class="btn-open"><a href="{% url 'rec_open_file' %}" class="btn-open-text">Open
+                    <button title="Choose the photo of the Person to find" class="btn-open"><a
+                            href="{% url 'rec_open_file' %}" class="btn-open-text">Open
                             File</button>&emsp;
                     {% endif %}
                     {% if not video_path %}
-                    <button class="btn-open"><a href="{% url 'file_open_video' %}" class="btn-open-text">Open
+                    <button title="Choose the video to scan" class="btn-open"><a href="{% url 'file_open_video' %}"
+                            class="btn-open-text">Open
                             Video</button>
                     {% endif %}
                     {% if path and video_path %}
-                    <button class="btn-open"><a href="{% url 'rec_feed' %}" class="btn-open-text">Go</a></button>
+                    <script>
+                        preloader = select('#preloader');
+                        preloader
+                    </script>
+                    <button class="btn-open"><a href="{% url 'rec_feed' %}" class="btn-open-text"
+                            onclick="$(preloader).toggle" id="#preloader">Go</a></button>
+                    <!-- <script>
+                        preloader.remove();
+                    </script> -->
                 </div>
                 <pre>{{ face_details_list }}</pre>
                 {% endif %}

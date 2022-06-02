@@ -186,7 +186,7 @@ class Rec_Face_Recogniser:
                             time_stamp = str(
                                 round(video.get(cv2.CAP_PROP_POS_MSEC)/1000, 2))
                             time_details = (
-                                f"{name} timestamp is: {time_stamp}\n")
+                                f"Name:'{name}' Timestamp is: '{time_stamp}'\n")
                             # face_details += face_details+"\n"
                             face_details_list.append(time_details)
                             print(time_details)
@@ -213,21 +213,24 @@ class Rec_Face_Recogniser:
 
 def live_open_file(request):
     global path
-    path = filedialog.askopenfilename()
+    path = filedialog.askopenfilename(
+        title="Choose the photo of the Person to find")
     print(path)
     return render(request, "SingleFace.html", {'path': True})
 
 
 def live_open_directory(request):
     global path
-    path = filedialog.askdirectory()
+    path = filedialog.askdirectory(
+        title="Choose the folder that contains photos of the Persons to find")
     print(path)
     return render(request, "MultiFace.html", {'path': True})
 
 
 def rec_open_file(request):
     global path
-    path = filedialog.askopenfilename()
+    path = filedialog.askopenfilename(
+        title="Choose the photo of the Person to find")
     print(path)
     if is_single1:
         file = "SingleFile.html"
@@ -241,7 +244,8 @@ def rec_open_file(request):
 
 def rec_open_directory(request):
     global path
-    path = filedialog.askdirectory()
+    path = filedialog.askdirectory(
+        title="Choose the folder that contains photos of the Persons to find")
     print(path)
     # if is_single1:
     #     file = "SingleFile.html"
@@ -255,7 +259,7 @@ def rec_open_directory(request):
 
 def file_open_video(request):
     global video_path
-    video_path = filedialog.askopenfilename()
+    video_path = filedialog.askopenfilename(title="Choose the video to scan")
     print(video_path)
     if is_single1:
         file = "SingleFile.html"
@@ -269,7 +273,7 @@ def file_open_video(request):
 
 def dir_open_video(request):
     global video_path
-    video_path = filedialog.askopenfilename()
+    video_path = filedialog.askopenfilename(title="Choose the video to scan")
     print(video_path)
     # if is_single1:
     #     file = "SingleFile.html"
