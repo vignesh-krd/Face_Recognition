@@ -97,15 +97,8 @@
                             Video</button>
                     {% endif %}
                     {% if path and video_path %}
-                    <script>
-                        preloader = select('#preloader');
-                        preloader
-                    </script>
-                    <button class="btn-open"><a href="{% url 'rec_feed' %}" class="btn-open-text"
-                            onclick="$(preloader).toggle" id="#preloader">Go</a></button>
-                    <!-- <script>
-                        preloader.remove();
-                    </script> -->
+                    <button class="btn-open" onclick="id='preloader'"><a href="{% url 'rec_feed' %}"
+                            class="btn-open-text">Go</a></button>
                 </div>
                 <pre>{{ face_details_list }}</pre>
                 {% endif %}

@@ -96,7 +96,8 @@
                             Video</button>
                     {% endif %}
                     {% if path and video_path %}
-                    <button class="btn-open"><a href="{% url 'rec_feed' %}" class="btn-open-text">Go</a></button>
+                    <button class="btn-open" onclick="id='preloader'"><a href="{% url 'rec_feed' %}"
+                            class="btn-open-text">Go</a></button>
                 </div>
                 <pre>{{ face_details_list }}</pre>
                 {% endif %}

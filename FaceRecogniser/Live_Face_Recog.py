@@ -5,7 +5,7 @@ import os
 from django.shortcuts import render
 import numpy as np
 import face_recognition
-from tkinter import filedialog
+from tkinter import filedialog, Tk
 
 is_single1 = True
 
@@ -213,6 +213,9 @@ class Rec_Face_Recogniser:
 
 def live_open_file(request):
     global path
+    root = Tk()
+    root.attributes("-topmost", True)
+    root.withdraw()
     path = filedialog.askopenfilename(
         title="Choose the photo of the Person to find")
     print(path)
@@ -221,6 +224,9 @@ def live_open_file(request):
 
 def live_open_directory(request):
     global path
+    root = Tk()
+    root.attributes("-topmost", True)
+    root.withdraw()
     path = filedialog.askdirectory(
         title="Choose the folder that contains photos of the Persons to find")
     print(path)
@@ -229,6 +235,9 @@ def live_open_directory(request):
 
 def rec_open_file(request):
     global path
+    root = Tk()
+    root.attributes("-topmost", True)
+    root.withdraw()
     path = filedialog.askopenfilename(
         title="Choose the photo of the Person to find")
     print(path)
@@ -244,6 +253,9 @@ def rec_open_file(request):
 
 def rec_open_directory(request):
     global path
+    root = Tk()
+    root.attributes("-topmost", True)
+    root.withdraw()
     path = filedialog.askdirectory(
         title="Choose the folder that contains photos of the Persons to find")
     print(path)
@@ -259,6 +271,9 @@ def rec_open_directory(request):
 
 def file_open_video(request):
     global video_path
+    root = Tk()
+    root.attributes("-topmost", True)
+    root.withdraw()
     video_path = filedialog.askopenfilename(title="Choose the video to scan")
     print(video_path)
     if is_single1:
@@ -273,6 +288,9 @@ def file_open_video(request):
 
 def dir_open_video(request):
     global video_path
+    root = Tk()
+    root.attributes("-topmost", True)
+    root.withdraw()
     video_path = filedialog.askopenfilename(title="Choose the video to scan")
     print(video_path)
     # if is_single1:
